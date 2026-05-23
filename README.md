@@ -91,26 +91,24 @@ kubectl port-forward svc/frontend-svc 8080:80 -n kubevision
 
 ## 📁 Project Structure
 
-** ** '
+```
 kubevision/
 ├── frontend/
-│   ├── index.html        # Full dashboard — open this in browser
+│   ├── index.html        # Full dashboard
 │   ├── Dockerfile        # nginx container
-│   └── nginx.conf        # nginx config with API proxy
+│   └── nginx.conf        # nginx config
 ├── backend/
-│   ├── server.js         # Express API — pods, metrics, events
+│   ├── server.js         # Express API
 │   ├── package.json
 │   └── Dockerfile
 ├── k8s/
 │   └── base/
 │       ├── namespace.yaml
 │       ├── configmap.yaml
-│       ├── backend.yaml  # Deployment + Service
-│       └── frontend.yaml # Deployment + Service
+│       ├── backend.yaml
+│       └── frontend.yaml
 └── README.md
 ```
-
----
 
 ## ✦ AI Assistant
 

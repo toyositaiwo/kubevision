@@ -1,0 +1,10 @@
+﻿with open("frontend/nginx.conf", "w", encoding="utf-8", newline="\n") as f:
+    f.write("server {\n")
+    f.write("    listen 80;\n")
+    f.write("    root /usr/share/nginx/html;\n")
+    f.write("    index index.html;\n")
+    f.write("    gzip on;\n")
+    f.write("    location / { try_files $uri /index.html; }\n")
+    f.write("    location /api/ { proxy_pass http://kubevision-api:3001; }\n")
+    f.write("}\n")
+print("DONE")

@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KubeVision â€” Kubernetes Dashboard</title>
+  <title>KubeVision -- Kubernetes Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -18,7 +18,7 @@
     body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
     body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,200,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,0.03) 1px,transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
 
-    /* â”€â”€ API KEY MODAL â”€â”€ */
+    /*  API KEY MODAL  */
     #apiModal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(4px); }
     .modal-box { background: var(--bg2); border: 1px solid var(--border-bright); border-radius: 14px; padding: 36px 40px; max-width: 480px; width: 90%; }
     .modal-logo { font-family: var(--mono); font-size: 22px; color: var(--cyan); margin-bottom: 6px; }
@@ -31,7 +31,7 @@
     .modal-note { font-size: 11px; color: var(--text-dim); margin-top: 12px; text-align: center; }
     .modal-note a { color: var(--cyan); text-decoration: none; }
 
-    /* â”€â”€ LAYOUT â”€â”€ */
+    /*  LAYOUT  */
     .shell { display: flex; min-height: 100vh; position: relative; z-index: 1; }
     .sidebar { width: 220px; min-height: 100vh; background: var(--bg2); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
     .logo { padding: 24px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
@@ -63,7 +63,7 @@
     .api-btn:hover { background: rgba(155,89,182,0.2); }
     .content { flex: 1; overflow-y: auto; padding: 24px 28px; }
 
-    /* â”€â”€ STAT CARDS â”€â”€ */
+    /*  STAT CARDS  */
     .stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 24px; }
     .stat-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
     .stat-card:hover { border-color: var(--border-bright); transform: translateY(-1px); }
@@ -81,7 +81,7 @@
     .stat-sub { font-size: 11px; color: var(--text-dim); }
     .stat-icon { position: absolute; bottom: 14px; right: 16px; font-size: 28px; opacity: 0.15; }
 
-    /* â”€â”€ PANELS â”€â”€ */
+    /*  PANELS  */
     .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
     .panel, .full-panel { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
     .full-panel { margin-bottom: 24px; }
@@ -89,7 +89,7 @@
     .panel-title { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); }
     .panel-badge { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 20px; background: rgba(0,200,255,0.1); color: var(--cyan); border: 1px solid rgba(0,200,255,0.2); }
 
-    /* â”€â”€ TABLES â”€â”€ */
+    /*  TABLES  */
     .data-table { width: 100%; }
     .data-table tr { border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.15s; }
     .data-table tr:last-child { border-bottom: none; }
@@ -107,7 +107,7 @@
     .loading { display:flex; align-items:center; justify-content:center; padding:40px; }
     .spinner { width:24px; height:24px; border:2px solid var(--border); border-top-color:var(--cyan); border-radius:50%; animation:spin 0.8s linear infinite; }
 
-    /* â”€â”€ METRIC BARS â”€â”€ */
+    /*  METRIC BARS  */
     .metric-bar-wrap { padding: 14px 20px; }
     .metric-row { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
     .metric-row:last-child { margin-bottom:0; }
@@ -119,7 +119,7 @@
     .metric-fill.orange { background:var(--orange); }
     .metric-val { font-size:11px; font-family:var(--mono); color:var(--cyan); width:50px; text-align:right; }
 
-    /* â”€â”€ EVENTS â”€â”€ */
+    /*  EVENTS  */
     .event-item { display:flex; gap:12px; padding:11px 20px; border-bottom:1px solid rgba(255,255,255,0.04); align-items:flex-start; }
     .event-item:last-child { border-bottom:none; }
     .event-type-dot { width:6px; height:6px; border-radius:50%; margin-top:5px; flex-shrink:0; }
@@ -130,7 +130,7 @@
     .event-msg { font-size:11px; color:var(--text-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .event-age { font-size:10px; color:var(--text-dim); flex-shrink:0; font-family:var(--mono); }
 
-    /* â”€â”€ AI CHAT PANEL â”€â”€ */
+    /*  AI CHAT PANEL  */
     .ai-panel { background:var(--bg3); border:1px solid rgba(155,89,182,0.25); border-radius:10px; overflow:hidden; margin-bottom:24px; }
     .ai-panel .panel-header { border-bottom-color:rgba(155,89,182,0.2); }
     .chat-messages { padding:16px 20px; min-height:120px; max-height:260px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
@@ -148,13 +148,13 @@
     .suggest-chip { padding:4px 10px; background:rgba(0,200,255,0.06); border:1px solid var(--border); border-radius:20px; font-size:11px; color:var(--text-dim); cursor:pointer; transition:all 0.15s; font-family:var(--mono); }
     .suggest-chip:hover { color:var(--cyan); border-color:rgba(0,200,255,0.3); background:rgba(0,200,255,0.1); }
 
-    /* â”€â”€ SYSINFO â”€â”€ */
+    /*  SYSINFO  */
     .sysinfo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); }
     .sysinfo-cell { background:var(--bg3); padding:14px 18px; }
     .sysinfo-key { font-size:10px; font-family:var(--mono); color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
     .sysinfo-val { font-size:13px; font-family:var(--mono); color:var(--cyan); }
 
-    /* â”€â”€ VIEWS â”€â”€ */
+    /*  VIEWS  */
     .view { display:none; } .view.active { display:block; }
     .page-header { margin-bottom:20px; }
     .page-header h1 { font-family:var(--mono); font-size:18px; font-weight:700; color:var(--text); margin-bottom:4px; }
@@ -166,15 +166,15 @@
 </head>
 <body>
 
-<!-- â”€â”€ API KEY MODAL â”€â”€ -->
+<!--  API KEY MODAL  -->
 <div id="apiModal">
   <div class="modal-box">
-    <div class="modal-logo">âŽˆ KubeVision</div>
+    <div class="modal-logo">K KubeVision</div>
     <p class="modal-sub">Enter your free Google Gemini API key to power the AI assistant. Your key is stored only in this browser session.</p>
     <div class="modal-label">Google Gemini API Key</div>
     <input class="modal-input" type="password" id="apiKeyInput" placeholder="AIzaSy..." />
-    <button class="modal-btn" id="apiKeySubmit">Connect â†’ Launch Dashboard</button>
-    <p class="modal-note">Get a key at <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> Â- Keys start with AIza</p>
+    <button class="modal-btn" id="apiKeySubmit">Connect -> Launch Dashboard</button>
+    <p class="modal-note">Get a free key at <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> . Keys start with AIza</p>
   </div>
 </div>
 
@@ -182,30 +182,30 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="logo">
-      <div class="logo-icon">âŽˆ</div>
+      <div class="logo-icon">K</div>
       <div><div class="logo-text">KubeVision</div><div class="logo-sub">Dashboard</div></div>
     </div>
     <nav class="nav">
       <div class="nav-section">Cluster</div>
-      <div class="nav-item active" data-view="overview"><span class="nav-icon">â—‰</span> Overview</div>
-      <div class="nav-item" data-view="nodes"><span class="nav-icon">â¬¡</span> Nodes</div>
-      <div class="nav-item" data-view="namespaces"><span class="nav-icon">âŠž</span> Namespaces</div>
+      <div class="nav-item active" data-view="overview"><span class="nav-icon">o</span> Overview</div>
+      <div class="nav-item" data-view="nodes"><span class="nav-icon">o</span> Nodes</div>
+      <div class="nav-item" data-view="namespaces"><span class="nav-icon">+</span> Namespaces</div>
       <div class="nav-section" style="margin-top:8px">Workloads</div>
-      <div class="nav-item" data-view="pods"><span class="nav-icon">â—«</span> Pods</div>
-      <div class="nav-item" data-view="deployments"><span class="nav-icon">âŠ›</span> Deployments</div>
+      <div class="nav-item" data-view="pods"><span class="nav-icon"></span> Pods</div>
+      <div class="nav-item" data-view="deployments"><span class="nav-icon">*</span> Deployments</div>
       <div class="nav-section" style="margin-top:8px">Network</div>
-      <div class="nav-item" data-view="services"><span class="nav-icon">â‡†</span> Services</div>
-      <div class="nav-item" data-view="ingress"><span class="nav-icon">â‡¥</span> Ingress</div>
+      <div class="nav-item" data-view="services"><span class="nav-icon"><-></span> Services</div>
+      <div class="nav-item" data-view="ingress"><span class="nav-icon">-></span> Ingress</div>
       <div class="nav-section" style="margin-top:8px">System</div>
-      <div class="nav-item" data-view="events"><span class="nav-icon">â—ˆ</span> Events</div>
-      <div class="nav-item" data-view="ai"><span class="nav-icon">âœ¦</span> AI Assistant</div>
+      <div class="nav-item" data-view="events"><span class="nav-icon">*</span> Events</div>
+      <div class="nav-item" data-view="ai"><span class="nav-icon">*</span> AI Assistant</div>
     </nav>
     <div class="cluster-info">
       <div class="cluster-badge">
         <div class="dot"></div>
         <div>
           <div class="cluster-name">prod-cluster-01</div>
-          <div style="font-size:10px;color:var(--text-dim);margin-top:2px">v1.28.4 Â- 3 nodes</div>
+          <div style="font-size:10px;color:var(--text-dim);margin-top:2px">v1.28.4 . 3 nodes</div>
         </div>
       </div>
     </div>
@@ -214,11 +214,11 @@
   <!-- MAIN -->
   <div class="main">
     <div class="topbar">
-      <div class="page-title">âŽˆ / <span id="breadcrumb">overview</span></div>
+      <div class="page-title">K / <span id="breadcrumb">overview</span></div>
       <div class="topbar-right">
         <div class="time-display" id="clock">--:--:--</div>
-        <button class="api-btn" id="changeKeyBtn">ðŸ”‘ API Key</button>
-        <button class="refresh-btn" id="refreshBtn"><span class="btn-icon">â†»</span> Refresh</button>
+        <button class="api-btn" id="changeKeyBtn"> API Key</button>
+        <button class="refresh-btn" id="refreshBtn"><span class="btn-icon">R</span> Refresh</button>
       </div>
     </div>
 
@@ -228,29 +228,29 @@
       <div class="view active" id="view-overview">
         <div class="page-header"><h1>Cluster Overview</h1><p>Real-time cluster health and resource summary</p></div>
         <div class="stat-grid">
-          <div class="stat-card cyan"><div class="stat-label">Total Pods</div><div class="stat-value">5</div><div class="stat-sub">5 running Â- 0 pending</div><div class="stat-icon">â—«</div></div>
-          <div class="stat-card green"><div class="stat-label">Nodes</div><div class="stat-value">3</div><div class="stat-sub">3 healthy Â- 0 down</div><div class="stat-icon">â¬¡</div></div>
-          <div class="stat-card orange"><div class="stat-label">Deployments</div><div class="stat-value">4</div><div class="stat-sub">4 available Â- 0 degraded</div><div class="stat-icon">âŠ›</div></div>
-          <div class="stat-card purple"><div class="stat-label">Uptime</div><div class="stat-value" id="uptimeVal">â€”</div><div class="stat-sub">v1.28.4</div><div class="stat-icon">â—ˆ</div></div>
+          <div class="stat-card cyan"><div class="stat-label">Total Pods</div><div class="stat-value">5</div><div class="stat-sub">5 running . 0 pending</div><div class="stat-icon"></div></div>
+          <div class="stat-card green"><div class="stat-label">Nodes</div><div class="stat-value">3</div><div class="stat-sub">3 healthy . 0 down</div><div class="stat-icon">o</div></div>
+          <div class="stat-card orange"><div class="stat-label">Deployments</div><div class="stat-value">4</div><div class="stat-sub">4 available . 0 degraded</div><div class="stat-icon">*</div></div>
+          <div class="stat-card purple"><div class="stat-label">Uptime</div><div class="stat-value" id="uptimeVal">--</div><div class="stat-sub">v1.28.4</div><div class="stat-icon">*</div></div>
         </div>
         <div class="section-grid">
           <div class="panel">
-            <div class="panel-header"><span class="panel-title">Resource Utilization</span><span class="panel-badge" id="uptimeBadge">â€”</span></div>
+            <div class="panel-header"><span class="panel-title">Resource Utilization</span><span class="panel-badge" id="uptimeBadge">--</span></div>
             <div class="metric-bar-wrap">
-              <div class="metric-row"><div class="metric-label">CPU</div><div class="metric-track"><div class="metric-fill cyan" id="cpuBar" style="width:0%"></div></div><div class="metric-val" id="cpuVal">â€”</div></div>
-              <div class="metric-row"><div class="metric-label">Memory</div><div class="metric-track"><div class="metric-fill green" id="memBar" style="width:0%"></div></div><div class="metric-val" id="memVal">â€”</div></div>
-              <div class="metric-row"><div class="metric-label">Requests</div><div class="metric-track"><div class="metric-fill orange" id="reqBar" style="width:0%"></div></div><div class="metric-val" id="reqVal">â€”</div></div>
+              <div class="metric-row"><div class="metric-label">CPU</div><div class="metric-track"><div class="metric-fill cyan" id="cpuBar" style="width:0%"></div></div><div class="metric-val" id="cpuVal">--</div></div>
+              <div class="metric-row"><div class="metric-label">Memory</div><div class="metric-track"><div class="metric-fill green" id="memBar" style="width:0%"></div></div><div class="metric-val" id="memVal">--</div></div>
+              <div class="metric-row"><div class="metric-label">Requests</div><div class="metric-track"><div class="metric-fill orange" id="reqBar" style="width:0%"></div></div><div class="metric-val" id="reqVal">--</div></div>
               <div class="metric-row"><div class="metric-label">Disk</div><div class="metric-track"><div class="metric-fill cyan" style="width:34%"></div></div><div class="metric-val">34%</div></div>
               <div class="metric-row"><div class="metric-label">Network</div><div class="metric-track"><div class="metric-fill green" style="width:12%"></div></div><div class="metric-val">12%</div></div>
             </div>
           </div>
           <div class="panel">
-            <div class="panel-header"><span class="panel-title">Recent Events</span><span class="panel-badge" style="color:var(--green);border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.08)">â— Live</span></div>
+            <div class="panel-header"><span class="panel-title">Recent Events</span><span class="panel-badge" style="color:var(--green);border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.08)">* Live</span></div>
             <div id="eventList"><div class="loading"><div class="spinner"></div></div></div>
           </div>
         </div>
         <div class="full-panel">
-          <div class="panel-header"><span class="panel-title">System Information</span><span class="panel-badge" id="podBadge">â€”</span></div>
+          <div class="panel-header"><span class="panel-title">System Information</span><span class="panel-badge" id="podBadge">--</span></div>
           <div id="sysinfo"><div class="loading"><div class="spinner"></div></div></div>
         </div>
       </div>
@@ -259,7 +259,7 @@
       <div class="view" id="view-pods">
         <div class="page-header"><h1>Pods</h1><p>All running pods across the cluster</p></div>
         <div class="full-panel">
-          <div class="panel-header"><span class="panel-title">Pod List</span><span class="panel-badge" id="podCount">â€”</span></div>
+          <div class="panel-header"><span class="panel-title">Pod List</span><span class="panel-badge" id="podCount">--</span></div>
           <table class="data-table"><thead><tr><th>Name</th><th>Status</th><th>Restarts</th><th>CPU</th><th>Memory</th><th>Node</th><th>Age</th></tr></thead>
           <tbody id="podsBody"><tr><td colspan="7"><div class="loading"><div class="spinner"></div></div></td></tr></tbody></table>
         </div>
@@ -299,7 +299,7 @@
       <div class="view" id="view-events">
         <div class="page-header"><h1>Events</h1><p>Cluster events and warnings</p></div>
         <div class="full-panel">
-          <div class="panel-header"><span class="panel-title">Event Stream</span><span class="panel-badge" style="color:var(--green);border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.08)">â— Live</span></div>
+          <div class="panel-header"><span class="panel-title">Event Stream</span><span class="panel-badge" style="color:var(--green);border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.08)">* Live</span></div>
           <table class="data-table"><thead><tr><th>Type</th><th>Reason</th><th>Object</th><th>Message</th><th>Age</th></tr></thead>
           <tbody id="eventsBody"><tr><td colspan="5"><div class="loading"><div class="spinner"></div></div></td></tr></tbody></table>
         </div>
@@ -309,17 +309,17 @@
       <div class="view" id="view-nodes">
         <div class="page-header"><h1>Nodes</h1><p>Cluster worker nodes</p></div>
         <div class="stat-grid" style="grid-template-columns:repeat(3,1fr)">
-          <div class="stat-card green"><div class="stat-label">Node 1</div><div class="stat-value">Ready</div><div class="stat-sub">4 vCPU Â- 16Gi RAM</div><div class="stat-icon">â¬¡</div></div>
-          <div class="stat-card cyan"><div class="stat-label">Node 2</div><div class="stat-value">Ready</div><div class="stat-sub">4 vCPU Â- 16Gi RAM</div><div class="stat-icon">â¬¡</div></div>
-          <div class="stat-card orange"><div class="stat-label">Node 3</div><div class="stat-value">Ready</div><div class="stat-sub">2 vCPU Â- 8Gi RAM</div><div class="stat-icon">â¬¡</div></div>
+          <div class="stat-card green"><div class="stat-label">Node 1</div><div class="stat-value">Ready</div><div class="stat-sub">4 vCPU . 16Gi RAM</div><div class="stat-icon">o</div></div>
+          <div class="stat-card cyan"><div class="stat-label">Node 2</div><div class="stat-value">Ready</div><div class="stat-sub">4 vCPU . 16Gi RAM</div><div class="stat-icon">o</div></div>
+          <div class="stat-card orange"><div class="stat-label">Node 3</div><div class="stat-value">Ready</div><div class="stat-sub">2 vCPU . 8Gi RAM</div><div class="stat-icon">o</div></div>
         </div>
         <div class="full-panel" style="margin-top:16px">
           <div class="panel-header"><span class="panel-title">Node Details</span></div>
           <table class="data-table"><thead><tr><th>Name</th><th>Status</th><th>Roles</th><th>Version</th><th>OS</th><th>CPU</th><th>Memory</th></tr></thead>
           <tbody>
-            <tr><td class="mono">node-1</td><td><span class="status-pill status-running">â— Ready</span></td><td class="dim mono">worker</td><td class="mono dim">v1.28.4</td><td class="dim mono">linux/amd64</td><td class="mono cyan">4</td><td class="mono dim">16Gi</td></tr>
-            <tr><td class="mono">node-2</td><td><span class="status-pill status-running">â— Ready</span></td><td class="dim mono">worker</td><td class="mono dim">v1.28.4</td><td class="dim mono">linux/amd64</td><td class="mono cyan">4</td><td class="mono dim">16Gi</td></tr>
-            <tr><td class="mono">node-3</td><td><span class="status-pill status-running">â— Ready</span></td><td class="dim mono">control-plane</td><td class="mono dim">v1.28.4</td><td class="dim mono">linux/amd64</td><td class="mono cyan">2</td><td class="mono dim">8Gi</td></tr>
+            <tr><td class="mono">node-1</td><td><span class="status-pill status-running">* Ready</span></td><td class="dim mono">worker</td><td class="mono dim">v1.28.4</td><td class="dim mono">linux/amd64</td><td class="mono cyan">4</td><td class="mono dim">16Gi</td></tr>
+            <tr><td class="mono">node-2</td><td><span class="status-pill status-running">* Ready</span></td><td class="dim mono">worker</td><td class="mono dim">v1.28.4</td><td class="dim mono">linux/amd64</td><td class="mono cyan">4</td><td class="mono dim">16Gi</td></tr>
+            <tr><td class="mono">node-3</td><td><span class="status-pill status-running">* Ready</span></td><td class="dim mono">control-plane</td><td class="mono dim">v1.28.4</td><td class="dim mono">linux/amd64</td><td class="mono cyan">2</td><td class="mono dim">8Gi</td></tr>
           </tbody></table>
         </div>
       </div>
@@ -331,8 +331,8 @@
           <div class="panel-header"><span class="panel-title">Ingress Rules</span></div>
           <table class="data-table"><thead><tr><th>Name</th><th>Host</th><th>Path</th><th>Backend</th><th>TLS</th><th>Age</th></tr></thead>
           <tbody>
-            <tr><td class="mono">main-ingress</td><td class="mono cyan">app.example.com</td><td class="mono dim">/</td><td class="mono dim">frontend-svc:80</td><td><span class="status-pill status-running">â— TLS</span></td><td class="mono dim">2d</td></tr>
-            <tr><td class="mono">api-ingress</td><td class="mono cyan">api.example.com</td><td class="mono dim">/api</td><td class="mono dim">backend-svc:3001</td><td><span class="status-pill status-running">â— TLS</span></td><td class="mono dim">2d</td></tr>
+            <tr><td class="mono">main-ingress</td><td class="mono cyan">app.example.com</td><td class="mono dim">/</td><td class="mono dim">frontend-svc:80</td><td><span class="status-pill status-running">* TLS</span></td><td class="mono dim">2d</td></tr>
+            <tr><td class="mono">api-ingress</td><td class="mono cyan">api.example.com</td><td class="mono dim">/api</td><td class="mono dim">backend-svc:3001</td><td><span class="status-pill status-running">* TLS</span></td><td class="mono dim">2d</td></tr>
           </tbody></table>
         </div>
       </div>
@@ -342,8 +342,8 @@
         <div class="page-header"><h1>AI Assistant</h1><p>Ask Claude anything about your Kubernetes cluster</p></div>
         <div class="ai-panel">
           <div class="panel-header">
-            <span class="panel-title" style="color:var(--purple)">âœ¦ Claude AI â€” Kubernetes Expert</span>
-            <span class="panel-badge" style="color:var(--purple);border-color:rgba(155,89,182,0.35);background:rgba(155,89,182,0.1)" id="aiStatus">â— Connected</span>
+            <span class="panel-title" style="color:var(--purple)">* Claude AI -- Kubernetes Expert</span>
+            <span class="panel-badge" style="color:var(--purple);border-color:rgba(155,89,182,0.35);background:rgba(155,89,182,0.1)" id="aiStatus">* Connected</span>
           </div>
           <div class="suggested-prompts">
             <span class="suggest-chip" onclick="fillPrompt('Explain what a Kubernetes Pod is')">What is a Pod?</span>
@@ -354,11 +354,11 @@
             <span class="suggest-chip" onclick="fillPrompt('Explain rolling updates in Kubernetes')">Rolling updates</span>
           </div>
           <div class="chat-messages" id="chatMessages">
-            <div class="chat-msg assistant">ðŸ‘‹ Hello! I'm your Kubernetes AI assistant powered by Claude. I can help you understand your cluster, debug issues, explain concepts, write YAML manifests, and more. What would you like to know?</div>
+            <div class="chat-msg assistant"> Hello! I'm your Kubernetes AI assistant powered by Claude. I can help you understand your cluster, debug issues, explain concepts, write YAML manifests, and more. What would you like to know?</div>
           </div>
           <div class="chat-input-row">
-            <input class="chat-input" id="chatInput" type="text" placeholder="Ask about your cluster, YAML help, debugging tipsâ€¦" />
-            <button class="chat-send-btn" id="chatSendBtn" onclick="sendChat()">Send â†—</button>
+            <input class="chat-input" id="chatInput" type="text" placeholder="Ask about your cluster, YAML help, debugging tips..." />
+            <button class="chat-send-btn" id="chatSendBtn" onclick="sendChat()">Send ></button>
           </div>
         </div>
 
@@ -366,10 +366,10 @@
           <div class="full-panel" style="margin-bottom:0">
             <div class="panel-header"><span class="panel-title">Quick Diagnostics</span></div>
             <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px">
-              <button class="refresh-btn" style="justify-content:center" onclick="fillPromptAndSwitch('Write a kubectl command to get all pods in all namespaces with their status')">kubectl: list all pods â†’</button>
-              <button class="refresh-btn" style="justify-content:center" onclick="fillPromptAndSwitch('Write a Kubernetes YAML for a simple nginx deployment with 3 replicas and resource limits')">Generate nginx deployment YAML â†’</button>
-              <button class="refresh-btn" style="justify-content:center" onclick="fillPromptAndSwitch('How do I debug a pod that is stuck in Pending state?')">Debug: Pending pod â†’</button>
-              <button class="refresh-btn" style="justify-content:center" onclick="fillPromptAndSwitch('Explain Kubernetes RBAC and how to create a ServiceAccount with read-only access')">Explain RBAC â†’</button>
+              <button class="refresh-btn" style="justify-content:center" onclick="fillPromptAndSwitch('Write a kubectl command to get all pods in all namespaces with their status')">kubectl: list all pods -></button>
+              <button class="refresh-btn" style="justify-content:center" onclick="fillPromptAndSwitch('Write a Kubernetes YAML for a simple nginx deployment with 3 replicas and resource limits')">Generate nginx deployment YAML -></button>
+              <button class="refresh-btn" style="justify-content:center" onclick="fillPromptAndSwitch('How do I debug a pod that is stuck in Pending state?')">Debug: Pending pod -></button>
+              <button class="refresh-btn" style="justify-content:center" onclick="fillPromptAndSwitch('Explain Kubernetes RBAC and how to create a ServiceAccount with read-only access')">Explain RBAC -></button>
             </div>
           </div>
           <div class="full-panel" style="margin-bottom:0">
@@ -393,16 +393,16 @@
 </div>
 
 <script>
-  // â”€â”€ STATE â”€â”€
+  //  STATE 
   let GEMINI_API_KEY = '';
   let chatHistory = [];
   let startTime = Date.now();
 
-  // â”€â”€ CLOCK â”€â”€
+  //  CLOCK 
   function updateClock() { document.getElementById('clock').textContent = new Date().toLocaleTimeString(); }
   setInterval(updateClock, 1000); updateClock();
 
-  // â”€â”€ API KEY MODAL â”€â”€
+  //  API KEY MODAL 
   document.getElementById('apiKeySubmit').addEventListener('click', submitKey);
   document.getElementById('apiKeyInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitKey(); });
 
@@ -422,7 +422,7 @@
     document.getElementById('apiModal').style.display = 'flex';
   });
 
-  // â”€â”€ NAVIGATION â”€â”€
+  //  NAVIGATION 
   document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('click', () => {
       document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
@@ -435,7 +435,7 @@
     });
   });
 
-  // â”€â”€ MOCK DATA (no backend needed) â”€â”€
+  //  MOCK DATA (no backend needed) 
   const MOCK = {
     system: { hostname: 'backend-pod-7d9f', platform: 'linux', arch: 'amd64', uptime: 172800, cpuCount: 4, totalMemory: 17179869184, freeMemory: 9663676416, loadAvg: [0.42, 0.38, 0.31], nodeVersion: 'v18.19.0', pod: 'backend-7d9f4b-xk2p9', namespace: 'kubevision', version: '1.0.0' },
     metrics: { requestCount: 847, uptime: 172800, memory: { rss: 52428800, heapUsed: 31457280, heapTotal: 41943040 }, cpu: '0.42', timestamp: new Date().toISOString() },
@@ -475,7 +475,7 @@
     ]
   };
 
-  // â”€â”€ LOAD VIEWS â”€â”€
+  //  LOAD VIEWS 
   async function loadView(view) {
     switch(view) {
       case 'overview': loadOverview(); break;
@@ -529,7 +529,7 @@
   function loadPods() {
     document.getElementById('podCount').textContent = MOCK.pods.length + ' pods';
     document.getElementById('podsBody').innerHTML = MOCK.pods.map(p => `
-      <tr><td class="mono">${p.name}</td><td><span class="status-pill status-running">â— ${p.status}</span></td>
+      <tr><td class="mono">${p.name}</td><td><span class="status-pill status-running">* ${p.status}</span></td>
       <td class="mono dim">${p.restarts}</td><td class="mono cyan">${p.cpu}</td>
       <td class="mono dim">${p.memory}</td><td class="mono dim">${p.node}</td><td class="mono dim">${p.age}</td></tr>`).join('');
   }
@@ -549,7 +549,7 @@
 
   function loadNamespaces() {
     document.getElementById('namespacesBody').innerHTML = MOCK.namespaces.map(n => `
-      <tr><td class="mono">${n.name}</td><td><span class="status-pill status-running">â— ${n.status}</span></td>
+      <tr><td class="mono">${n.name}</td><td><span class="status-pill status-running">* ${n.status}</span></td>
       <td class="mono dim">${n.age}</td></tr>`).join('');
   }
 
@@ -560,7 +560,7 @@
       <td class="dim" style="font-size:12px">${e.message}</td><td class="mono dim">${e.age}</td></tr>`).join('');
   }
 
-  // â”€â”€ AI CHAT â”€â”€
+  //  AI CHAT 
   async function sendChat() {
     const input = document.getElementById('chatInput');
     const btn = document.getElementById('chatSendBtn');
@@ -571,32 +571,47 @@
     input.value = '';
     btn.disabled = true;
     appendMsg(msg, 'user');
-    chatHistory.push({ role: 'user', content: msg });
+    chatHistory.push({ role: 'user', parts: [{ text: msg }] });
 
-    const thinking = appendMsg('Thinkingâ€¦', 'assistant thinking');
+    const thinking = appendMsg('Thinking...', 'assistant thinking');
+
+    const systemPrompt = `You are a Kubernetes expert assistant embedded in KubeVision, a Kubernetes dashboard.
+The cluster context:
+- Cluster: prod-cluster-01 running Kubernetes v1.28.4
+- 3 nodes (node-1, node-2, node-3)
+- Namespace: kubevision
+- Running pods: frontend (nginx), backend (Node.js API), postgres, redis, nginx-ingress
+- 4 deployments all healthy
+
+Answer concisely and technically. For YAML examples, use code blocks. For kubectl commands, use inline code. Keep responses under 300 words unless a detailed YAML is requested.`;
 
     try {
-      const systemPrompt = `You are a Kubernetes expert assistant in KubeVision. Cluster: prod-cluster-01, K8s v1.28.4, 3 nodes, namespace kubevision. Answer concisely. Use code blocks for YAML. Keep under 300 words.`;
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
-        { method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ system_instruction: { parts: [{ text: systemPrompt }] }, contents: chatHistory }) }
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: systemPrompt }] },
+            contents: chatHistory
+          })
+        }
       );
 
       const data = await response.json();
       thinking.remove();
 
       if (data.error) {
-        appendMsg('âš  API error: ' + data.error.message, 'assistant');
+        appendMsg('! API error: ' + data.error.message, 'assistant');
         chatHistory.pop();
       } else {
         const reply = data.candidates[0].content.parts[0].text;
         appendMsg(reply, 'assistant');
-        chatHistory.push({ role: 'assistant', content: reply });
+        chatHistory.push({ role: 'model', parts: [{ text: reply }] });
       }
     } catch (err) {
       thinking.remove();
-      appendMsg('âš  Network error â€” check your API key and try again.', 'assistant');
+      appendMsg('! Network error -- check your API key and try again.', 'assistant');
       chatHistory.pop();
     }
 
@@ -629,7 +644,7 @@
     if (e.key === 'Enter') sendChat();
   });
 
-  // â”€â”€ REFRESH â”€â”€
+  //  REFRESH 
   document.getElementById('refreshBtn').addEventListener('click', () => {
     const btn = document.getElementById('refreshBtn');
     btn.classList.add('spinning');
@@ -650,11 +665,4 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
 

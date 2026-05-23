@@ -107,6 +107,7 @@ kubectl port-forward svc/frontend-svc 8080:80 -n kubevision
 │       ├── backend.yaml  # Deployment + Service
 │       └── frontend.yaml # Deployment + Service
 └── README.md
+```
 
 ---
 

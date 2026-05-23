@@ -91,7 +91,7 @@ kubectl port-forward svc/frontend-svc 8080:80 -n kubevision
 
 ## 📁 Project Structure
 
-\\nkubevision/
+kubevision/
 ├── frontend/
 │   ├── index.html        # Full dashboard — open this in browser
 │   ├── Dockerfile        # nginx container
